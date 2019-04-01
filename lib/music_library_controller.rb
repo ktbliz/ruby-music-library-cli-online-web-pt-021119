@@ -61,8 +61,13 @@ class MusicLibraryController
     artist = gets.strip 
     
     sorted_songs = Song.all.sort { |x, y| x.name <=> y.name }
-    sorted_songs_by_artist = sorted_songs.select { |song| song.artist == artist }
-    binding.pry 
+    sorted_songs_by_artist = [] 
+    sorted_songs.select { |song| 
+      if song.artist == artist 
+        sorted_songs_by_artist << song
+      end
+    }
+   
     counter = 1 
     sorted_songs_by_artist.uniq.each { |song| 
       puts "#{counter}. #{song.name} - #{song.genre.name}"
