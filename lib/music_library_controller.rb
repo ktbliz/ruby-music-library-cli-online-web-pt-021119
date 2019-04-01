@@ -60,6 +60,14 @@ class MusicLibraryController
     puts "Please enter the name of an artist:"
     artist = gets.strip 
     
+    sorted_songs = Song.all.sort { |x, y| x.name <=> y.name }
+    sorted_songs_by_artist = sorted_songs.select { |song| song.artist == artist }
+    counter = 1 
+    sorted_songs.uniq.each { |song| 
+      puts "#{counter}. #{song.name} - #{song.genre.name}"
+      counter += 1 
+    }
+    
   end 
   
   
